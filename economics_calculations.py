@@ -1,22 +1,35 @@
 class eco_calc():
     def __init__(self):
-        pass
+        self.MU = []
+        self.MU_price_ratio = []
     def marginal_utility(self,T_MU,QUANT):
-        print('The formula for Marginal Utility is: (change in total MU / change in quantity)') 
-        count = 0
+        #print('The formula for Marginal Utility is: (change in total MU / change in quantity)') 
         MU = []
-        for i in range(len(T_MU)-1):
-            if count == 0: 
+        count = 0
+        for i,value in enumerate(QUANT):
+            if value == 0: 
                 MU.append('--')
-                count += count + 1
-            MU.append(T_MU[i+1] - T_MU[i])
-        print(MU)
-
-
+                count -= 1
+            else:
+                try:
+                    MU.append((T_MU[count+1] - T_MU[count])/(QUANT[count+1]-QUANT[count]))
+                except:
+                    print('How did I get an index error?')
+            count += 1
+        self.MU = MU
+        return MU
+    def marginal_price_ratio(self,MU,prices):
+        mu_price_ratio = []
+        for mu,price in zip(MU, prices):
+            if type(mu) is not str:
+                mu_price_ratio.append(round(mu/price,1))
+            else:
+                mu_price_ratio.append('--')
+        return mu_price_ratio
 if __name__ == "__main__":
     calc = eco_calc()
-    calc.marginal_utility([0,100,300,300],[0,1,2,3])
-
-    
+    mu = calc.marginal_utility([0,100,200,300],[0,1,2,3])
+    print(calc.marginal_price_ratio(mu, [1,2,3,4]))
+     
 
 
