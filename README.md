@@ -1,6 +1,6 @@
 # Economics Calcuator
 
-## Current calculations
+### Current calculations
 * Marginal Utility
 * Marginal Utility To Price Ratio
 
