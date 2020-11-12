@@ -26,6 +26,7 @@ class eco_calc():
             else:
                 mu_price_ratio.append('--')
         return mu_price_ratio
+
 if __name__ == "__main__":
     calc = eco_calc()
     mu = calc.marginal_utility([0,100,200,300],[0,1,2,3])
